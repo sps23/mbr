@@ -15,7 +15,8 @@ case class Manhattan() extends Distance {
       if (x.isEmpty) None
       else {
         val sumOfDiffAbs: Double = (x, y).zipped.foldLeft(0d)((d, tuple) => {
-          val sum: Double = d + Math.abs(tuple._1 - tuple._2)
+          val diffAbs: Double = Math.abs(tuple._1 - tuple._2)
+          val sum: Double = d + diffAbs
           sum
         })
         val distance: Double = sumOfDiffAbs / x.length.toDouble

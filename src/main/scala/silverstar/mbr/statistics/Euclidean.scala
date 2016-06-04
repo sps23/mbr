@@ -12,7 +12,8 @@ case class Euclidean() extends Distance {
       if (x.isEmpty) None
       else {
         val sumOfDiffToSecondPower: Double = (x, y).zipped.foldLeft(0d)((d, tuple) => {
-          val sum = d + Math.pow(tuple._1 - tuple._2, 2)
+          val diffSqr: Double = Math.pow(tuple._1 - tuple._2, 2)
+          val sum: Double = d + diffSqr
           sum
         })
         val distance: Double = Math.sqrt(sumOfDiffToSecondPower) / x.length.toDouble
