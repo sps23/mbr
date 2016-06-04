@@ -39,8 +39,8 @@ class ManhattanSpec  extends FunSpec with Matchers {
 
     it("return result conforming triangular inequality") {
       val distanceAB: Double = Manhattan.distance(chpData1, chpData2).getOrElse(0.0)
-      val distanceACPlusCB: Double = Manhattan.distance(chpData1, chpData2).getOrElse(0.0) +
-        Manhattan.distance(chpData1, chpData2).getOrElse(0.0)
+      val distanceACPlusCB: Double = Manhattan.distance(chpData1, chpData3).getOrElse(0.0) +
+        Manhattan.distance(chpData3, chpData2).getOrElse(0.0)
       distanceAB <= distanceACPlusCB shouldBe true
     }
 

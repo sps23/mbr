@@ -39,8 +39,8 @@ class InfinitySpec extends FunSpec with Matchers {
 
     it("return result conforming triangular inequality") {
       val distanceAB: Double = Infinity.distance(chpData1, chpData2).getOrElse(0.0)
-      val distanceACPlusCB: Double = Infinity.distance(chpData1, chpData2).getOrElse(0.0) +
-        Infinity.distance(chpData1, chpData2).getOrElse(0.0)
+      val distanceACPlusCB: Double = Infinity.distance(chpData1, chpData3).getOrElse(0.0) +
+        Infinity.distance(chpData3, chpData2).getOrElse(0.0)
       distanceAB <= distanceACPlusCB shouldBe true
     }
 
