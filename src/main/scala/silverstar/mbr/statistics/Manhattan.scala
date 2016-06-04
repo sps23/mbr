@@ -7,16 +7,20 @@ import silverstar.mbr.model.DataPoint
   */
 case class Manhattan() extends Distance {
 
+  override def distance(x: DataPoint, y: DataPoint): Option[Double] =
+    distance(x.toList(), y.toList())
+
   override def distance(x: List[Double], y: List[Double]): Option[Double] = {
     if (x.length == y.length) {
       if (x.isEmpty) None
-      else Some((x, y).zipped.foldLeft(0d)((sum, tuple) => sum + Math.abs(tuple._1 - tuple._2)) / x.length.toDouble)
+      else {
+        val sumOfDiffAbs: Double = (x, y).zipped.foldLeft(0d)((sum, tuple) => sum + Math.abs(tuple._1 - tuple._2))
+        val distance: Double = sumOfDiffAbs / x.length.toDouble
+        Some(distance)
+      }
     }
     else None
   }
-
-  override def distance(x: DataPoint, y: DataPoint): Option[Double] =
-    distance(x.toList(), y.toList())
 }
 
 object Manhattan extends Manhattan
