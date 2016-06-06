@@ -10,13 +10,13 @@ import silverstar.mbr.model.CentralHeatingPlantData
   */
 class NormalizationDataMinMaxService extends NormalizationDataService {
 
-  val CSVExtension: String = ".csv"
-  val DefaultOutputPostfix: String = "_norm"
-
   override def createNormalizedData(inputFile: File, outputFile: Option[File] = None): File = {
-    val output: File = outputFile.getOrElse(new File(inputFile.getAbsolutePath.replace(CSVExtension,
-      DefaultOutputPostfix + CSVExtension)))
-    val normalizationParameters: NormalizationParameters = getNormalizationParameters(inputFile)
+    val csvExtension: String = ".csv"
+    val defaultOutputPostfix: String = "_norm"
+
+    val output: File = outputFile.getOrElse(new File(inputFile.getAbsolutePath.replace(csvExtension,
+      defaultOutputPostfix + csvExtension)))
+    val normalizationParameters: NormalizationParameters = calculateNormalizationParameters(inputFile)
     val min: CentralHeatingPlantData = normalizationParameters.minValueDataPoint.asInstanceOf[CentralHeatingPlantData]
     val max: CentralHeatingPlantData = normalizationParameters.maxValueDataPoint.asInstanceOf[CentralHeatingPlantData]
     val maxMinusMin: CentralHeatingPlantData = max - min
@@ -30,7 +30,7 @@ class NormalizationDataMinMaxService extends NormalizationDataService {
     output
   }
 
-  override def getNormalizationParameters(file: File): NormalizationParameters = {
+  override def calculateNormalizationParameters(file: File): NormalizationParameters = {
     val reader: CSVReader[CentralHeatingPlantData] = CSVReader[CentralHeatingPlantData]
     val centralHeatingPlantDataList: List[CentralHeatingPlantData] = reader.readCSVFromFile(f = file, skipHeader = true)
 

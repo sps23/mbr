@@ -9,7 +9,7 @@ import silverstar.mbr.model.DataPoint
   */
 trait NormalizationDataService {
 
-  def getNormalizationParameters(file: File): NormalizationParameters
+  def calculateNormalizationParameters(file: File): NormalizationParameters
 
   def createNormalizedData(inputFile: File, outputFile: Option[File]): File
 }
