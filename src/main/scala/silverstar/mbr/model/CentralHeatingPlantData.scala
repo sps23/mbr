@@ -12,4 +12,8 @@ case class CentralHeatingPlantData(tZas: Double,
   def -(data: CentralHeatingPlantData): CentralHeatingPlantData = {
     new CentralHeatingPlantData(tZas = tZas - data.tZas, tPow = tPow - data.tPow, tZew = tZew - data.tZew)
   }
+
+  def /(data: CentralHeatingPlantData): CentralHeatingPlantData = {
+    new CentralHeatingPlantData(tZas = tZas / data.tZas, tPow = tPow / data.tPow, tZew = tZew / data.tZew)
+  }
 }
