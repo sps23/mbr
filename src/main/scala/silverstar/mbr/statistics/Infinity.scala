@@ -9,14 +9,16 @@ case class Infinity() extends Distance {
 
   override def distance(x: List[Double], y: List[Double]): Option[Double] = {
     if (x.length == y.length) {
-      if (x.isEmpty) None
-      else {
+      if (x.isEmpty) {
+        None
+      } else {
         val diffAbs: List[Double] = (x, y).zipped.map((xx, yy) => Math.abs(xx - yy))
         val maxOfDiffAbs: Double = diffAbs.max
         Some(maxOfDiffAbs)
       }
+    } else {
+      None
     }
-    else None
   }
 }
 

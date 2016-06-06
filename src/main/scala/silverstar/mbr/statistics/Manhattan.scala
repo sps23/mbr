@@ -12,8 +12,9 @@ case class Manhattan() extends Distance {
 
   override def distance(x: List[Double], y: List[Double]): Option[Double] = {
     if (x.length == y.length) {
-      if (x.isEmpty) None
-      else {
+      if (x.isEmpty) {
+        None
+      } else {
         val sumOfDiffAbs: Double = (x, y).zipped.foldLeft(0d)((d, tuple) => {
           val diffAbs: Double = Math.abs(tuple._1 - tuple._2)
           val sum: Double = d + diffAbs
@@ -22,8 +23,9 @@ case class Manhattan() extends Distance {
         val distance: Double = sumOfDiffAbs / x.length.toDouble
         Some(distance)
       }
+    } else {
+      None
     }
-    else None
   }
 }
 
